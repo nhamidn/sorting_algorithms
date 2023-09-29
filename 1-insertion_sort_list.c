@@ -9,36 +9,37 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *forward = *list, *backward, *tmp, *ftmp;
 
-	while (forward)
-	{
-		backward = forward;
-		while (backward->prev && backward->n < backward->prev->n)
+	if (*list)
+		while (forward)
 		{
-			tmp = backward->prev;
-			ftmp = backward->prev->prev;
-
-			if (ftmp)
+			backward = forward;
+			while (backward->prev && backward->n < backward->prev->n)
 			{
-				ftmp->next = backward;
+				tmp = backward->prev;
+				ftmp = backward->prev->prev;
+
+				if (ftmp)
+				{
+					ftmp->next = backward;
+				}
+
+				tmp->next = backward->next;
+				backward->next = tmp;
+
+				if (tmp->next)
+				{
+					tmp->next->prev = tmp;
+				}
+
+				backward->prev = ftmp;
+				tmp->prev = backward;
+
+				if (backward->prev == NULL)
+				{
+					*list = backward;
+				}
+				print_list(*list);
 			}
-
-			tmp->next = backward->next;
-			backward->next = tmp;
-
-			if (tmp->next)
-			{
-				tmp->next->prev = tmp;
-			}
-
-			backward->prev = ftmp;
-			tmp->prev = backward;
-
-			if (backward->prev == NULL)
-			{
-				*list = backward;
-			}
-			print_list(*list);
+			forward = forward->next;
 		}
-		forward = forward->next;
-	}
 }
