@@ -10,6 +10,7 @@ void insertion_sort_list(listint_t **list)
 	listint_t *forward = NULL, *backward, *tmp, *ftmp;
 
 	if (list != NULL)
+	{
 		forward = *list;
 		while (forward)
 		{
@@ -43,4 +44,5 @@ void insertion_sort_list(listint_t **list)
 			}
 			forward = forward->next;
 		}
+	}
 }
