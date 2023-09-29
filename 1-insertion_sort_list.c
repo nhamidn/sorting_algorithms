@@ -7,9 +7,10 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *forward = *list, *backward, *tmp, *ftmp;
+	listint_t *forward = NULL, *backward, *tmp, *ftmp;
 
-	if (*list)
+	if (list != NULL)
+		forward = *list;
 		while (forward)
 		{
 			backward = forward;
